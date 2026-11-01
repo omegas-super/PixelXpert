@@ -106,6 +106,7 @@ Dated assessments. These describe a moment in time and are expected to age.
 | [analysis/liquid-glass-and-lineageos.md](analysis/liquid-glass-and-lineageos.md) | Research: iOS-style glass effects on LineageOS 24 / Android 17, `AndroidLiquidGlassView` internals, and the packaging blockers that matter more than the renderer |
 | [analysis/lineageos-setup.md](analysis/lineageos-setup.md) | Which packages PixelXpert needs on LineageOS 24 / Android 17, what GApps does and does not satisfy, and the hook-audit verification path |
 | [analysis/pixel-qs-panel-on-lineageos.md](analysis/pixel-qs-panel-on-lineageos.md) | Whether PixelXpert's QS packs can run against AOSP SystemUI, which classes they need, and the three layers of "Pixel-style" |
+| [analysis/getting-a-build.md](analysis/getting-a-build.md) | Three ways to produce an APK and Magisk zip, and the CI trap that builds upstream instead of your fork |
 
 ---
 
