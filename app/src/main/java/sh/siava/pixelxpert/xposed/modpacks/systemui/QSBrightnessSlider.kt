@@ -130,16 +130,19 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 	private var androidViewUpdateSlot: Any? = null
 
 	@Volatile
-	private var simulatingLandscape = false
+	private var rotationPass = 0
 	private val mainHandler = Handler(Looper.getMainLooper())
 
+	private val clearRotationPassRunnable = Runnable { rotationPass = 0 }
+
 	private val restorePortraitRunnable = Runnable {
-		simulatingLandscape = false
+		rotationPass = 2
 		dispatchSimulatedConfig(swapOrientation = false)
+		mainHandler.postDelayed(clearRotationPassRunnable, 60L)
 	}
 
 	private val simulateRotationRunnable = Runnable {
-		simulatingLandscape = true
+		rotationPass = 1
 		dispatchSimulatedConfig(swapOrientation = true)
 		mainHandler.postDelayed(restorePortraitRunnable, 60L)
 	}
@@ -179,19 +182,18 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 		arrangedFirstSlots.clear()
 		mediaRowSlots.clear()
 		sceneMediaRowSlots.clear()
-		qsBrightnessSlots.clear()
 
 		if (key.any { it == "qs_layout_order" || it == "qqs_brightness_slider" }) {
 			mainHandler.removeCallbacks(simulateRotationRunnable)
 			mainHandler.removeCallbacks(restorePortraitRunnable)
+			mainHandler.removeCallbacks(clearRotationPassRunnable)
 			mainHandler.post(simulateRotationRunnable)
 		}
 	}
 
 	private fun dispatchSimulatedConfig(swapOrientation: Boolean) {
 		try {
-			val fragment = qsFragment ?: return
-			val root = callMethod(fragment, "getView") as? View ?: return
+			val root = callMethod(qsFragment ?: return, "getView") as? View ?: return
 			val config = Configuration(mContext.resources.configuration)
 			if (swapOrientation) {
 				config.orientation = if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -203,23 +205,28 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 				config.screenWidthDp = config.screenHeightDp
 				config.screenHeightDp = w
 			}
-			try {
-				callMethod(fragment, "onConfigurationChanged", config)
-			} catch (_: Throwable) {
-			}
 			root.dispatchConfigurationChanged(config)
 		} catch (_: Throwable) {
 		}
 	}
 
-	private fun markParametersUncertain(method: Method, args: Array<Any?>) {
+	private fun applyRotationPass(method: Method, args: Array<Any?>): Boolean {
+		val pass = rotationPass
+		if (pass == 0) return false
+
 		val composerIndex = method.parameterTypes.indexOfFirst {
 			className("androidx.compose.runtime", "Composer") == it.name
 		}
 		if (composerIndex != -1 && composerIndex + 1 < args.size) {
-			val changed = args[composerIndex + 1] as? Int ?: return
-			args[composerIndex + 1] = changed and 0x24924924.inv()
+			val changed = args[composerIndex + 1] as? Int
+			if (changed != null) args[composerIndex + 1] = changed and 0x24924924.inv()
 		}
+		if (pass == 1) {
+			val mediaInRowIndex = args.indexOfFirst { it is Boolean }
+			if (mediaInRowIndex != -1) args[mediaInRowIndex] = true
+			return true
+		}
+		return false
 	}
 
 	override fun onPackageLoaded(PRParam: XposedModuleInterface.PackageReadyParam) {
@@ -265,14 +272,7 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 		}
 
 		qsLayoutClass.before("QuickSettingsLayout").run { param ->
-			val method = param.method as Method
-			val mediaInRowIndex = param.args.indexOfFirst { it is Boolean }
-			if (simulatingLandscape) {
-				if (mediaInRowIndex != -1) param.args[mediaInRowIndex] = true
-				markParametersUncertain(method, param.args)
-				return@run
-			}
-			markParametersUncertain(method, param.args)
+			if (applyRotationPass(param.method as Method, param.args)) return@run
 			if (!brightnessBelowTiles && !brightnessInQqs && !mediaOnTop) return@run
 			if (param.args.size < 3) return@run
 
@@ -286,6 +286,7 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 
 			// The media row is the only Boolean argument; its position is not
 			// stable across releases, so locate it rather than assume it.
+			val mediaInRowIndex = param.args.indexOfFirst { it is Boolean }
 			val mediaInRow: Boolean? = if (mediaInRowIndex != -1) param.args[mediaInRowIndex] as? Boolean else null
 			val media = param.args.getOrNull(2)
 
@@ -309,6 +310,7 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 				return@run
 			}
 
+			val method = param.method as Method
 			val composerIndex = method.parameterTypes.indexOfFirst {
 				className("androidx.compose.runtime", "Composer") == it.name
 			}
@@ -338,17 +340,10 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 		}
 
 		qsLayoutClass.before("QuickQuickSettingsLayout").run { param ->
-			val method = param.method as Method
-			val mediaInRowIndex = param.args.indexOfFirst { it is Boolean }
-			if (simulatingLandscape) {
-				if (mediaInRowIndex != -1) param.args[mediaInRowIndex] = true
-				markParametersUncertain(method, param.args)
-				return@run
-			}
-			markParametersUncertain(method, param.args)
+			if (applyRotationPass(param.method as Method, param.args)) return@run
 			if (!brightnessInQqs && !mediaOnTop) return@run
 
-			val mediaInRow = if (mediaInRowIndex != -1) param.args[mediaInRowIndex] as? Boolean else null
+			val mediaInRow = param.args.firstOrNull { it is Boolean } as? Boolean
 			if (mediaInRow != false) return@run
 
 			val tiles = param.args.getOrNull(0) ?: return@run
@@ -371,7 +366,7 @@ class QSBrightnessSlider(context: Context) : XposedModPack(context) {
 
 			if (!mediaOnTop) return@run
 
-			val parameterTypes = method.parameterTypes
+			val parameterTypes = (param.method as Method).parameterTypes
 			val slotIndices = parameterTypes.indices
 				.filter { parameterTypes[it].name == className("kotlin.jvm.functions", "Function2") }
 			if (slotIndices.size != 2) return@run
