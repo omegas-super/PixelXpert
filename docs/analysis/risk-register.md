@@ -501,9 +501,11 @@ line, no error, no crash. The pack exists, compiles, and is dead.
 **Scope of the defect:** `CallVibrator` is the only pack carrying
 `@TelecomServerModPack`, so exactly one feature is affected.
 
-**Mitigation:** add `com.android.server.telecom` to `scope.list`. This was fixed
-on branch `fix/lineageos-scope-and-trebuchet`; see
-[getting-a-build](getting-a-build.md).
+**Mitigation:** add `com.android.server.telecom` to `scope.list`. Fixed on branch
+`fix/lineageos-scope-and-trebuchet` and **confirmed in a compiled artifact**: the
+built APK's `META-INF/xposed/scope.list` now carries seven entries including
+`com.android.server.telecom`, and the string is present in `classes.dex`. The
+build succeeded on CI run 41312733798.
 
 ---
 
@@ -525,11 +527,15 @@ and zero `nexuslauncher` references across all seven.
 
 **Mitigation:** add a `@TrebuchetModPack` annotation targeting
 `com.android.launcher3` and carry it alongside `@LauncherModPack` on the seven
-packs. Attempted on branch `fix/lineageos-scope-and-trebuchet`.
+packs. Implemented on branch `fix/lineageos-scope-and-trebuchet` and **confirmed
+to compile**: CI run 41312733798 succeeded, the generated registry picked up
+`TrebuchetModPack`, and `com.android.launcher3` appears in `classes.dex`.
 
-**Uncertain:** whether Trebuchet's release build retains those class names
-through its own R8 pass. If it does not, the hooks resolve to nothing and the
-packs' existing `catch (ignored: Throwable)` swallows the failure. This needs a
+**Still unverified:** whether Trebuchet's release build retains those class names
+through its own R8 pass. Compiling proves the annotation resolves and the pack
+registers for the new target; it does not prove the hooks find their classes on a
+real Trebuchet build. If they do not, the packs' existing
+`catch (ignored: Throwable)` swallows the failure rather than crashing. Needs a
 `LauncherInspector` run on a Trebuchet device to confirm.
 
 ---
