@@ -469,6 +469,71 @@ different sizes by design: `searchScreenTitles` deliberately excludes
 
 ---
 
+### R18 — `com.android.server.telecom` is absent from `scope.list`, so telecom packs never load
+
+**Severity:** Critical
+**Detection:** compare `scope.list` against the target annotations
+
+`app/src/main/resources/META-INF/xposed/scope.list` ships five entries:
+
+```text
+com.android.systemui
+com.google.android.apps.nexuslauncher
+system
+com.android.settings
+com.google.android.dialer
+```
+
+`com.android.server.telecom` is missing, yet `@TelecomServerModPack` exists in
+`app/src/main/java/sh/siava/pixelxpert/xposed/annotations/TelecomServerModPack.kt`
+with `targetPackage = Constants.TELECOM_SERVER_PACKAGE`, and `CallVibrator`
+carries it.
+
+`app/src/main/resources/META-INF/xposed/module.prop` sets `staticScope=true`,
+which means libxposed loads the module only into the processes named in
+`scope.list`. The telecom server is not one of them, so the module is never
+loaded there, so `CallVibrator` is never constructed.
+
+**Why it is critical:** this affects every device, Pixel included, and has done
+so for as long as the scope list has been in this state. It is silent: no log
+line, no error, no crash. The pack exists, compiles, and is dead.
+
+**Scope of the defect:** `CallVibrator` is the only pack carrying
+`@TelecomServerModPack`, so exactly one feature is affected.
+
+**Mitigation:** add `com.android.server.telecom` to `scope.list`. This was fixed
+on branch `fix/lineageos-scope-and-trebuchet`; see
+[getting-a-build](getting-a-build.md).
+
+---
+
+### R19 — The launcher packs have no process to run in on a ROM without Pixel Launcher
+
+**Severity:** High (for non-Pixel ROMs only)
+**Detection:** `pm list packages | grep nexuslauncher`
+
+The seven launcher packs carry `@LauncherModPack`, which targets
+`com.google.android.apps.nexuslauncher`. That package exists only when a Google
+apps package has installed Pixel Launcher. On a ROM whose launcher is Trebuchet,
+the package is `com.android.launcher3` and the Pixel package is absent, so
+`loadModPacks` finds no match and no launcher pack is constructed.
+
+The packs themselves hook `com.android.launcher3.*` and `com.android.quickstep.*`
+— the AOSP Launcher3 base — not anything Pixel-specific. Verified per pack:
+`TaskbarActivator` 14 `launcher3` / 1 `quickstep` / 0 `nexuslauncher` references,
+and zero `nexuslauncher` references across all seven.
+
+**Mitigation:** add a `@TrebuchetModPack` annotation targeting
+`com.android.launcher3` and carry it alongside `@LauncherModPack` on the seven
+packs. Attempted on branch `fix/lineageos-scope-and-trebuchet`.
+
+**Uncertain:** whether Trebuchet's release build retains those class names
+through its own R8 pass. If it does not, the hooks resolve to nothing and the
+packs' existing `catch (ignored: Throwable)` swallows the failure. This needs a
+`LauncherInspector` run on a Trebuchet device to confirm.
+
+---
+
 ### R13 — No local toolchain in this checkout
 
 **Severity:** Low (environmental)
@@ -513,6 +578,8 @@ Before starting work, decide:
 - [ ] Am I relying on `PixelXpertProxy`? R11 applies.
 - [ ] Am I adding or reading a `TimePref`? R14 applies.
 - [ ] Am I adding a preference default? R15 applies.
+- [ ] Am I adding a target annotation? R18 applies — the package must also appear
+      in `scope.list` or the module never loads there.
 
 ---
 
