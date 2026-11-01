@@ -1,0 +1,55 @@
+name: Docs Check
+
+on:
+  push:
+    branches: [canary, stable]
+    paths:
+      - 'docs/**'
+      - 'AGENTS.md'
+      - 'scripts/check-docs.mjs'
+      - '.github/workflows/docs-check.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'AGENTS.md'
+      - 'scripts/check-docs.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check documentation integrity
+        run: node scripts/check-docs.mjs --verbose
+
+      - name: Verify AGENTS.md is present and non-trivial
+        run: |
+          if [ ! -f AGENTS.md ]; then
+            echo "AGENTS.md is missing"
+            exit 1
+          fi
+          lines=$(wc -l < AGENTS.md)
+          if [ "$lines" -lt 50 ]; then
+            echo "AGENTS.md is suspiciously short ($lines lines)"
+            exit 1
+          fi
+          echo "AGENTS.md: $lines lines"
+
+      - name: Verify docs index exists
+        run: |
+          if [ ! -f docs/README.md ]; then
+            echo "docs/README.md is missing"
+            exit 1
+          fi
+          echo "docs index present"

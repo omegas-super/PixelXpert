@@ -1,0 +1,457 @@
+{
+  "applicationId": "sh.siava.pixelxpert",
+  "scopedPackages": [
+    {
+      "packageName": "com.android.systemui",
+      "label": "SystemUI",
+      "requiresRoot": true,
+      "annotation": "@SystemUIModPack"
+    },
+    {
+      "packageName": "com.google.android.apps.nexuslauncher",
+      "label": "Pixel Launcher",
+      "requiresRoot": true,
+      "annotation": "@LauncherModPack"
+    },
+    {
+      "packageName": "android",
+      "label": "System Framework (system_server)",
+      "requiresRoot": false,
+      "annotation": "@FrameworkModPack"
+    },
+    {
+      "packageName": "com.android.settings",
+      "label": "Settings",
+      "requiresRoot": false,
+      "annotation": "@SettingsModPack"
+    },
+    {
+      "packageName": "com.google.android.dialer",
+      "label": "Google Dialer",
+      "requiresRoot": false,
+      "annotation": "@DialerModPack"
+    },
+    {
+      "packageName": "com.android.server.telecom",
+      "label": "Telecom server",
+      "requiresRoot": false,
+      "annotation": "@TelecomServerModPack"
+    }
+  ],
+  "broadcastActions": [
+    {
+      "constant": "ACTION_CHECK_XPOSED_ENABLED",
+      "value": "sh.siava.pixelxpert.ACTION_CHECK_XPOSED_ENABLED",
+      "direction": "app -> hooks",
+      "sentBy": "ui/hooks/HooksScreen.kt",
+      "receivedBy": "xposed/modpacks/allApps/HookTester.kt",
+      "purpose": "Ask every hooked process to identify itself."
+    },
+    {
+      "constant": "ACTION_XPOSED_CONFIRMED",
+      "value": "sh.siava.pixelxpert.ACTION_XPOSED_CONFIRMED",
+      "direction": "hooks -> app",
+      "sentBy": "xposed/modpacks/allApps/HookTester.kt",
+      "receivedBy": "ui/hooks/HooksScreen.kt",
+      "purpose": "Reply naming the confirmed package in extra \"packageName\"."
+    },
+    {
+      "constant": "ACTION_REQUEST_HOOK_AUDIT",
+      "value": "sh.siava.pixelxpert.ACTION_REQUEST_HOOK_AUDIT",
+      "direction": "app -> hooks",
+      "sentBy": "ui/debug/HookAuditScreen.kt",
+      "receivedBy": "xposed/modpacks/allApps/HookAuditor.kt",
+      "purpose": "Request one reflection inspection pass."
+    },
+    {
+      "constant": "ACTION_HOOK_AUDIT_RESULT",
+      "value": "sh.siava.pixelxpert.ACTION_HOOK_AUDIT_RESULT",
+      "direction": "hooks -> app",
+      "sentBy": "xposed/modpacks/allApps/HookAuditor.kt",
+      "receivedBy": "ui/debug/HookAuditScreen.kt",
+      "purpose": "Audit report, with extras \"packageName\" and \"auditJson\"."
+    },
+    {
+      "constant": "ACTION_HOME",
+      "value": "sh.siava.pixelxpert.ACTION_HOME",
+      "direction": "launcher -> system_server",
+      "sentBy": "xposed/modpacks/launcher/CustomNavGestures.kt",
+      "receivedBy": "xposed/modpacks/android/PhoneWindowManager.kt",
+      "purpose": "Drive the window manager home hot key."
+    },
+    {
+      "constant": "ACTION_BACK",
+      "value": "sh.siava.pixelxpert.ACTION_BACK",
+      "direction": "launcher -> system_server",
+      "sentBy": "xposed/modpacks/launcher/CustomNavGestures.kt",
+      "receivedBy": "xposed/modpacks/android/PhoneWindowManager.kt",
+      "purpose": "Drive the window manager back key press."
+    },
+    {
+      "constant": "ACTION_SLEEP",
+      "value": "sh.siava.pixelxpert.ACTION_SLEEP",
+      "direction": "launcher -> system_server",
+      "sentBy": "xposed/modpacks/launcher/CustomNavGestures.kt",
+      "receivedBy": "xposed/modpacks/android/PhoneWindowManager.kt",
+      "purpose": "Put the device to sleep."
+    },
+    {
+      "constant": "ACTION_SWITCH_APP_PROFILE",
+      "value": "sh.siava.pixelxpert.ACTION_SWITCH_APP_PROFILE",
+      "direction": "launcher -> system_server",
+      "sentBy": "Constants.getAppProfileSwitchIntent",
+      "receivedBy": "xposed/modpacks/android/PhoneWindowManager.kt",
+      "purpose": "Switch the focused app to another user profile. Carries FLAG_RECEIVER_FOREGROUND."
+    },
+    {
+      "constant": "ACTION_PROFILE_SWITCH_AVAILABLE",
+      "value": "sh.siava.pixelxpert.ACTION_PROFILE_SWITCH_AVAILABLE",
+      "direction": "system_server -> SystemUI",
+      "sentBy": "xposed/modpacks/android/PhoneWindowManager.kt",
+      "receivedBy": "xposed/modpacks/systemui/StatusbarMods.kt",
+      "purpose": "Report whether the focused app exists in another profile, in extra \"available\"."
+    }
+  ],
+  "intentExtras": [
+    {
+      "extra": "packageName",
+      "type": "String",
+      "carriedBy": "ACTION_XPOSED_CONFIRMED, ACTION_HOOK_AUDIT_RESULT",
+      "writtenBy": "HookTester, HookAuditor",
+      "readBy": "HooksScreen, HookAuditScreen"
+    },
+    {
+      "extra": "auditJson",
+      "type": "String",
+      "carriedBy": "ACTION_HOOK_AUDIT_RESULT",
+      "writtenBy": "HookAuditor",
+      "readBy": "HookAuditScreen"
+    },
+    {
+      "extra": "available",
+      "type": "Boolean",
+      "carriedBy": "ACTION_PROFILE_SWITCH_AVAILABLE",
+      "writtenBy": "PhoneWindowManager",
+      "readBy": "StatusbarMods"
+    },
+    {
+      "extra": "updateTapped",
+      "type": "Boolean",
+      "carriedBy": "Intent.ACTION_RUN to MainActivity",
+      "writtenBy": "ui/update/UpdateScreen.kt",
+      "readBy": "MainActivity"
+    },
+    {
+      "extra": "filePath",
+      "type": "String",
+      "carriedBy": "Intent.ACTION_RUN to MainActivity",
+      "writtenBy": "ui/update/UpdateScreen.kt",
+      "readBy": "MainActivity"
+    },
+    {
+      "extra": "migratePrefs",
+      "type": "String",
+      "carriedBy": "Magisk post-install callback",
+      "writtenBy": "MagiskModBase scripts",
+      "readBy": "MainActivity"
+    },
+    {
+      "extra": "newUpdate",
+      "type": "Boolean",
+      "carriedBy": "update notification",
+      "writtenBy": "util/UpdateWorker.kt",
+      "readBy": "MainActivity"
+    },
+    {
+      "extra": "notificationId",
+      "type": "Int",
+      "carriedBy": "update notification",
+      "writtenBy": "UpdateWorker, UpdateScreen",
+      "readBy": "receivers/NotificationActionHandler.kt"
+    },
+    {
+      "extra": "max_charging_current",
+      "type": "Int",
+      "carriedBy": "battery status intent",
+      "writtenBy": "framework",
+      "readBy": "BatteryDataProvider, KeyguardMods"
+    },
+    {
+      "extra": "max_charging_voltage",
+      "type": "Int",
+      "carriedBy": "battery status intent",
+      "writtenBy": "framework",
+      "readBy": "BatteryDataProvider, KeyguardMods"
+    },
+    {
+      "extra": "temperature",
+      "type": "Int",
+      "carriedBy": "battery status intent",
+      "writtenBy": "framework",
+      "readBy": "KeyguardMods"
+    },
+    {
+      "extra": "android.media.EXTRA_VOLUME_STREAM_TYPE",
+      "type": "Int",
+      "carriedBy": "volume change broadcast",
+      "writtenBy": "framework",
+      "readBy": "xposed/utils/SystemUtils.kt"
+    },
+    {
+      "extra": "android.media.EXTRA_VOLUME_STREAM_VALUE",
+      "type": "Int",
+      "carriedBy": "volume change broadcast",
+      "writtenBy": "framework",
+      "readBy": "xposed/utils/SystemUtils.kt"
+    },
+    {
+      "extra": "android.intent.extra.STREAM",
+      "type": "Parcelable (Uri)",
+      "carriedBy": "ACTION_SEND of the hook audit report",
+      "writtenBy": "HookAuditScreen",
+      "readBy": "the share target"
+    },
+    {
+      "extra": "android.intent.extra.SUBJECT",
+      "type": "String",
+      "carriedBy": "ACTION_SEND of the hook audit report",
+      "writtenBy": "HookAuditScreen",
+      "readBy": "the share target"
+    },
+    {
+      "extra": "android.intent.extra.COMPONENT_NAME",
+      "type": "Parcelable (ComponentName)",
+      "carriedBy": "splash hand-off",
+      "writtenBy": "launcher",
+      "readBy": "FakeSplashActivity"
+    },
+    {
+      "extra": "android.app.extra.DOWNLOAD_ID",
+      "type": "Long",
+      "carriedBy": "DownloadManager completion",
+      "writtenBy": "DownloadManager",
+      "readBy": "UpdateScreen"
+    }
+  ],
+  "filePaths": [
+    {
+      "constant": "Constants.getLockScreenSubjectCachePath",
+      "value": "<cacheDir>/lswt.png",
+      "writtenBy": "DepthWallpaper",
+      "purpose": "Segmented subject mask cache; its length decides whether re-segmentation is needed."
+    },
+    {
+      "constant": "Constants.getLockScreenBitmapCachePath",
+      "value": "<cacheDir>/lsw.jpg",
+      "writtenBy": "DepthWallpaper",
+      "purpose": "Cropped lock-screen wallpaper bitmap cache."
+    },
+    {
+      "constant": "Constants.MAGISK_UPDATE_DIR",
+      "value": "/data/adb/modules_update",
+      "writtenBy": "Magisk",
+      "purpose": "Staged module directory; a module.prop here means an update waits for a reboot."
+    },
+    {
+      "constant": "Constants.MAGISK_MODULES_DIR",
+      "value": "/data/adb/modules",
+      "writtenBy": "Magisk",
+      "purpose": "Active module directory. Declared in Constants but read by no code path."
+    },
+    {
+      "constant": "Constants.MOD_NAME",
+      "value": "PixelXpert",
+      "writtenBy": "ModuleInstaller",
+      "purpose": "Module folder name under the Magisk directories."
+    },
+    {
+      "constant": "XPrefs.MagiskRoot",
+      "value": "/data/adb/modules/PixelXpert",
+      "writtenBy": "XPrefs",
+      "purpose": "Module root path as the hook side sees it."
+    },
+    {
+      "constant": "ModuleInstaller.updateDir",
+      "value": "/data/adb/modules_update/PixelXpert",
+      "writtenBy": "ModuleInstaller",
+      "purpose": "Where the staged module.prop and system.prop are read and written."
+    }
+  ],
+  "updateChannels": {
+    "channelId": "Updates",
+    "notificationIds": [
+      {
+        "constant": "UPDATE_AVAILABLE_ID",
+        "value": 0,
+        "purpose": "Update available notification."
+      },
+      {
+        "constant": "UPDATE_DOWNLOADED_ID",
+        "value": 1,
+        "purpose": "Download finished, tap to install."
+      },
+      {
+        "constant": "UPDATE_DOWNLOAD_FAILED_ID",
+        "value": 2,
+        "purpose": "Download failed."
+      }
+    ],
+    "endpoints": [
+      {
+        "channel": "stable",
+        "url": "https://raw.githubusercontent.com/Codecity001/PixelXpert/stable/latestStable.json",
+        "constant": "STABLE_UPDATES_URL"
+      },
+      {
+        "channel": "stable (fallback)",
+        "url": "https://raw.githubusercontent.com/Codecity001/PixelXpert/main/latestStable.json",
+        "constant": "inline fallback in fetchUpdateInfo"
+      },
+      {
+        "channel": "stable (fallback)",
+        "url": "https://raw.githubusercontent.com/Codecity001/PixelXpert/master/latestStable.json",
+        "constant": "inline fallback in fetchUpdateInfo"
+      },
+      {
+        "channel": "canary",
+        "url": "https://raw.githubusercontent.com/Codecity001/PixelXpert/canary/latestCanary.json",
+        "constant": "CANARY_UPDATES_URL"
+      },
+      {
+        "channel": "override",
+        "url": "value of preference \"updateJsonUrl\"",
+        "constant": "Constants.KEY_UPDATE_JSON_URL"
+      }
+    ],
+    "manifests": [
+      {
+        "file": "latestCanary.json",
+        "writtenBy": "incrementCanaryVersion",
+        "readBy": "the app update check"
+      },
+      {
+        "file": "latestVersion.json",
+        "writtenBy": "incrementStableVersion",
+        "readBy": "the app update check"
+      },
+      {
+        "file": "MagiskModuleUpdate_Xposed.json",
+        "writtenBy": "incrementCanaryVersion, incrementStableVersion",
+        "readBy": "Magisk updateJson in MagiskModBase/module.prop"
+      },
+      {
+        "file": "MagiskModuleUpdate_Full.json",
+        "writtenBy": "incrementCanaryVersion, incrementStableVersion",
+        "readBy": "the full-package Magisk update channel"
+      },
+      {
+        "file": "latestStable.json",
+        "writtenBy": "incrementStableVersion",
+        "readBy": "the stable update check"
+      }
+    ]
+  },
+  "preferenceFileKeys": [
+    {
+      "key": "IsPrefsInitiated",
+      "type": "boolean",
+      "writtenBy": "PrefStore.markReady",
+      "purpose": "Gate that lets ExtendedRemotePreferences start fanning out change events."
+    },
+    {
+      "key": "drawableMapping",
+      "type": "String (JSON)",
+      "writtenBy": "ThemePackMapping.saveMapping",
+      "purpose": "Icon pack resource substitution map read by IconPacks."
+    },
+    {
+      "key": "packageStrike_<packageName>",
+      "type": "Int",
+      "writtenBy": "BootLoopProtector",
+      "purpose": "Bootloop strike count per package; three inside a minute refuse the load."
+    },
+    {
+      "key": "packageLastLoad_<packageName>",
+      "type": "Long",
+      "writtenBy": "BootLoopProtector",
+      "purpose": "Timestamp that resets the strike counter."
+    },
+    {
+      "key": "updateVersionIgnored",
+      "type": "Int",
+      "writtenBy": "UpdateWorker",
+      "purpose": "Version code the user dismissed."
+    },
+    {
+      "key": "latestVersionCode",
+      "type": "Int",
+      "writtenBy": "UpdateWorker",
+      "purpose": "Last version code the background check saw."
+    }
+  ],
+  "aiMethods": [
+    {
+      "constant": "AI_METHOD_MLKIT",
+      "value": 0,
+      "purpose": "Subject segmentation through ML Kit; the value stored by default in \"SegmentorAI\"."
+    },
+    {
+      "constant": "AI_METHOD_PYTORCH",
+      "value": 1,
+      "purpose": "Subject segmentation through PyTorch. Declared in Constants but referenced by no code path."
+    }
+  ],
+  "aidlInterfaces": [
+    {
+      "interface": "IPixelXpertProxy",
+      "methods": [
+        "String[] runRootCommand(String command)",
+        "Bitmap extractSubject(in Bitmap input, int method)"
+      ],
+      "implementedBy": "service/PixelXpertProxy.kt",
+      "purpose": "Root command and subject-segmentation surface the hooked processes bind to."
+    },
+    {
+      "interface": "IRootProviderService",
+      "methods": [
+        "boolean checkLSPosedDB(String packageName)",
+        "boolean isPackageInstalled(String packageName)",
+        "boolean activateInLSPosed(String packageName)",
+        "IBinder getFileSystemService()"
+      ],
+      "implementedBy": "service/RootProvider.kt",
+      "purpose": "LSPosed and package state queries the Hooks page drives."
+    }
+  ],
+  "storageKeys": [
+    {
+      "name": "PrefStore.FILE_NAME",
+      "value": "sh.siava.pixelxpert_preferences",
+      "purpose": "The SharedPreferences file both sides open, in device-protected storage."
+    },
+    {
+      "name": "REMOTE_PREF_AUTHORITY",
+      "value": "sh.siava.pixelxpert",
+      "purpose": "Authority of RemotePrefProvider; also the RemotePreferences authority the hooks bind to."
+    },
+    {
+      "name": "IconPackUtil.ACTION_PACK",
+      "value": "sh.siava.pixelxpert.iconpack",
+      "purpose": "Intent action every icon pack declares; an external contract, not derived from the application id."
+    },
+    {
+      "name": "HooksMonitor PREFS",
+      "value": "hooks_monitor",
+      "purpose": "Device-protected file holding the per-boot pid report used to restart packages that missed the module."
+    },
+    {
+      "name": "ThemePackMapping.DRAWABLE_MAPPING_KEY",
+      "value": "drawableMapping",
+      "purpose": "Key of the icon pack mapping in the preference file."
+    }
+  ],
+  "rootRequirement": [
+    "com.android.systemui",
+    "com.google.android.apps.nexuslauncher"
+  ]
+}

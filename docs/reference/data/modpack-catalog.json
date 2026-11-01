@@ -1,0 +1,582 @@
+[
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.allApps.HookAuditor",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/allApps/HookAuditor.kt",
+    "annotation": "@CommonModPack",
+    "targetPackage": "",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Answers a hook audit request with a single-pass reflection inspection of the hosting process and posts the report back as JSON."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.allApps.HookTester",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/allApps/HookTester.kt",
+    "annotation": "@CommonModPack",
+    "targetPackage": "",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Answers the Hooks page ping, naming the process it runs in so the page can report the package as hooked."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.AdbWifiPortPin",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/AdbWifiPortPin.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Pins the wireless-debugging adb port by forwarding the configured port to the port adbd actually chose."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.BrightnessRange",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/BrightnessRange.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Restricts screen brightness to the configured range, in DisplayPowerController and in the BrightnessInfo the slider UI reads."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.FaceUpScreenSleep",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/FaceUpScreenSleep.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Puts the device to sleep after it has been lying still and face up for the configured time."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.GestureNavbarManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/GestureNavbarManager.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Removes the IME navigation row (back chevron and keyboard switcher) that gesture navigation draws under the keyboard."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.HotSpotController",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/HotSpotController.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Applies the hidden-SSID, client-approval, shutdown-timeout and client-cap settings to every SoftApConfiguration the framework builds."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.LockscreenProtectionFramework",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/LockscreenProtectionFramework.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 10,
+    "targetsMainProcess": true,
+    "summary": "Blocks the power menu and the Power + Volume Up chord while the device is locked."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.PackageManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/PackageManager.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Bypasses the mismatched-signature and version-downgrade install checks, and resets both switches five minutes after they were enabled."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.PhoneWindowManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/PhoneWindowManager.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Hosts the receiver behind the home, back, sleep and app-profile-switch broadcasts, and publishes whether a profile switch is available for the focused app."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.ScreenOffKeys",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/ScreenOffKeys.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Remaps the power-key long press, the double-press camera gesture and the volume keys while the screen is off, and lets the volume keys step the torch level."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.ScreenRotation",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/ScreenRotation.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Forces every screen rotation to be allowed by taking over DisplayRotation.rotationForOrientation."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.StatusbarSize",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/StatusbarSize.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Scales the status bar height and, with the cutout switch on, replaces the display cutout with DisplayCutout.NO_CUTOUT."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.SystemScreenRecord",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/SystemScreenRecord.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Lets the SystemUI screen recorder capture secure content by answering yes in DisplayManagerService.canProjectSecureVideo for that caller."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.TargetOptimizer",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/TargetOptimizer.kt",
+    "annotation": "@FrameworkModPack",
+    "targetPackage": "android",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Runs cmd package compile -m speed -f for every scoped package once per build ID, through the root proxy."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.CallVibrator",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/CallVibrator.kt",
+    "annotation": "@TelecomServerModPack",
+    "targetPackage": "com.android.server.telecom",
+    "childProcessName": "",
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Vibrates when a call is answered and when it drops."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.settings.AppCloneEnabler",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/settings/AppCloneEnabler.kt",
+    "annotation": "@SettingsModPack",
+    "targetPackage": "com.android.settings",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Re-enables the Settings app-clone screens and the delete-all-clones menu entry on builds that hide them."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.settings.PXSettingsLauncher",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/settings/PXSettingsLauncher.kt",
+    "annotation": "@SettingsModPack",
+    "targetPackage": "com.android.settings",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Adds the module entry to the Settings homepage, with the alternate icon when the expressive theme is active."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.IconPacks",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/IconPacks.kt",
+    "annotation": "@SettingsModPack",
+    "targetPackage": "com.android.settings",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Serves drawables from the selected icon pack in place of the original resources."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.MiscSettings",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/MiscSettings.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Fan-out sink for the misc settings: pushes the network-stats formatting state into StringFormatter and runs the root commands behind display override, volume steps, the SystemUI tuner and the VoLTE / hotspot overrides."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.BrightnessRange",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/BrightnessRange.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Restricts screen brightness to the configured range, in DisplayPowerController and in the BrightnessInfo the slider UI reads."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.android.StatusbarSize",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/android/StatusbarSize.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Scales the status bar height and, with the cutout switch on, replaces the display cutout with DisplayCutout.NO_CUTOUT."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.BatteryDataProvider",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/BatteryDataProvider.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 1,
+    "targetsMainProcess": true,
+    "summary": "Publishes battery level, charging, fast-charging and power-save state to the other packs that read it."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.CaffeineTile",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/CaffeineTile.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Gives the module caffeine tile its keep-awake behaviour: click cycles 5, 10 and 30 minutes, long click switches to infinite."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.CursorControlKeys",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/CursorControlKeys.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Draws cursor left/right buttons over the gesture navigation bar while the keyboard is open and injects DPAD key events."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.DepthWallpaper",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/DepthWallpaper.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Builds the lock-screen depth wallpaper: wallpaper layer, AI-segmented subject cutout and dimming veil, optionally on AOD."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.EasyUnlock",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/EasyUnlock.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Dismisses the keyguard once the learned secret length is reached and the credential verifies, and can raise the bouncer on wake."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.FeatureFlagsMods",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/FeatureFlagsMods.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Tells the clipboard overlay the remote-action flag is on and chooses whether the LTE icon reads as 4G."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.FingerprintWhileDozing",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/FingerprintWhileDozing.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Stops KeyguardUpdateMonitor from polling the fingerprint sensor while the device is dozing."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.GestureNavbarManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/GestureNavbarManager.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Enables or disables the left and right back gesture and sets how tall each edge region is."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.HighBrightnessFlashlightTile",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/HighBrightnessFlashlightTile.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Gives the module high-brightness torch tile its click, long-click and subtitle behaviour."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.IconPacks",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/IconPacks.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Serves drawables from the selected icon pack in place of the original resources."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.KeyGuardPinScrambler",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/KeyGuardPinScrambler.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Shuffles the PIN bouncer digits on both the view-based and the Compose keypad."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.KeyguardMods",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/KeyguardMods.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Keyguard customisation: carrier text, middle custom text, charging info, forced AOD while charging, dim amount, hidden avatar, transparent bottom buttons and the torch animation."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.LockscreenProtectionSystemUI",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/LockscreenProtectionSystemUI.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Blocks the Quick Settings connectivity tiles and the SystemUI power menu while the device is locked."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.MultiStatusbarRows",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/MultiStatusbarRows.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Replaces the status bar icon container with a multi-row container and applies the icon sort plan."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.NotificationExpander",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/NotificationExpander.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Adds expand-all and collapse-all footer buttons and applies the default expansion mode."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.NotificationManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/NotificationManager.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Sets how long heads-up notifications stay up and makes ongoing notifications non-dismissable."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.PowerMenu",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/PowerMenu.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Adds bootloader, soft-reboot and SystemUI-restart entries to the power dialog and relabels the system power-options row."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.QSBrightnessSlider",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/QSBrightnessSlider.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Moves the brightness slider below the tiles, into collapsed QS, and adds the adaptive-brightness button, by reordering the panel composables."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.QSTileGrid",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/QSTileGrid.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Sets the Quick Settings tile rows and columns for portrait and landscape, the quick-QS row count and the tile label scale."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.ScreenGestures",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/ScreenGestures.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Double tap to sleep and wake, tap or pick up to show the ambient display, and press-and-hold to light the torch."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.ScreenRecord",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/ScreenRecord.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "ORs the secure virtual-display flag into MediaProjection.createVirtualDisplay so the recorder can capture restricted content."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.ScreenshotManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/ScreenshotManager.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": "screenshot",
+    "priority": 99,
+    "targetsMainProcess": false,
+    "summary": "Silences the screenshot shutter and lets the screenshot chord capture secure content."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.StatusIconTuner",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/StatusIconTuner.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Applies the per-area ignored icon lists to the status bar, the shade header and the keyguard."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.StatusbarGestures",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/StatusbarGestures.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "One-finger Quick Settings pull-down and pull-up on the status bar, plus the long-press app switch shortcut."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.StatusbarMods",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/StatusbarMods.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Status bar content and layout: clock position and format, clock colours, network traffic, battery bar, extra icon slots, privacy chip and roaming state."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.ThermalProvider",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/ThermalProvider.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 1,
+    "targetsMainProcess": true,
+    "summary": "Publishes the device thermal readings in Celsius or Fahrenheit to the rest of the module."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.UDFPSManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/UDFPSManager.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Hides the under-display fingerprint icon and/or its background circle."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.systemui.VolumeTile",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/systemui/VolumeTile.kt",
+    "annotation": "@SystemUIModPack",
+    "targetPackage": "com.android.systemui",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Gives the module media-volume tile its alert-slider dialog, mute toggle and percentage icon."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.ClearAllButtonMod",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/ClearAllButtonMod.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Adds a floating clear-all button to the Recents screen and mirrors the system button visibility and tint."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.CustomNavGestures",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/CustomNavGestures.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Turns launcher edge swipes (left, right, two-finger and long swipe) into the configured actions."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.HideNavigationBarInsets",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/HideNavigationBarInsets.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Removes the launcher taskbar's reservation of the navigation bar inset."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.LauncherGestureNavbarManager",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/LauncherGestureNavbarManager.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Resizes the taskbar gesture pill and optionally recolors it with the monet accent."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.LauncherThemedIcons",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/LauncherThemedIcons.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Renders a monochrome icon layer for launcher builds that no longer ship one, and records whether the build has its own generator."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.PixelXpertIconUpdater",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/PixelXpertIconUpdater.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Asks the launcher to re-check the module package icon on every activity resume, so an icon swap shows without a reboot."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.launcher.TaskbarActivator",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/launcher/TaskbarActivator.kt",
+    "annotation": "@LauncherModPack",
+    "targetPackage": "com.google.android.apps.nexuslauncher",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Forces the taskbar on or off, reorders the three-button layout, and applies the taskbar height and corner-radius overrides."
+  },
+  {
+    "className": "sh.siava.pixelxpert.xposed.modpacks.dialer.RecordingMessage",
+    "filePath": "app/src/main/java/sh/siava/pixelxpert/xposed/modpacks/dialer/RecordingMessage.kt",
+    "annotation": "@DialerModPack",
+    "targetPackage": "com.google.android.dialer",
+    "childProcessName": null,
+    "priority": 99,
+    "targetsMainProcess": true,
+    "summary": "Silences the Google Dialer call-recording voice prompts and their text-to-speech announcement."
+  }
+]

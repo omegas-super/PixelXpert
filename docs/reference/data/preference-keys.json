@@ -1,0 +1,1769 @@
+[
+  {
+    "key": "DialerRemoveRecordMessage",
+    "type": "boolean",
+    "default": "false",
+    "screen": "dialer_prefs",
+    "readBy": [
+      "RecordingMessage"
+    ]
+  },
+  {
+    "key": "force_volte",
+    "type": "boolean",
+    "default": "false",
+    "screen": "dialer_prefs",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "vibrateOnAnswered",
+    "type": "boolean",
+    "default": "false",
+    "screen": "dialer_prefs",
+    "readBy": [
+      "CallVibrator"
+    ]
+  },
+  {
+    "key": "vibrateOnDrop",
+    "type": "boolean",
+    "default": "false",
+    "screen": "dialer_prefs",
+    "readBy": [
+      "CallVibrator"
+    ]
+  },
+  {
+    "key": "BackFromLeft",
+    "type": "boolean",
+    "default": "true",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "GestureNavbarManager"
+    ]
+  },
+  {
+    "key": "BackFromRight",
+    "type": "boolean",
+    "default": "true",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "GestureNavbarManager"
+    ]
+  },
+  {
+    "key": "BackLeftHeight",
+    "type": "float",
+    "default": "100",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "GestureNavbarManager"
+    ]
+  },
+  {
+    "key": "BackRightHeight",
+    "type": "float",
+    "default": "100",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "GestureNavbarManager"
+    ]
+  },
+  {
+    "key": "CursorControlKeys",
+    "type": "boolean",
+    "default": "false",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CursorControlKeys"
+    ]
+  },
+  {
+    "key": "FCLongSwipeEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "GesPillHeightFactor",
+    "type": "float",
+    "default": "100",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "LauncherGestureNavbarManager"
+    ]
+  },
+  {
+    "key": "GesPillWidthModPos",
+    "type": "float",
+    "default": "50",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "LauncherGestureNavbarManager"
+    ]
+  },
+  {
+    "key": "HideNavbarInsets",
+    "type": "boolean",
+    "default": "false",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "HideNavigationBarInsets"
+    ]
+  },
+  {
+    "key": "KeyboardSpaceHideButtons",
+    "type": "boolean",
+    "default": "false",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "GestureNavbarManager"
+    ]
+  },
+  {
+    "key": "leftSwipeUpAction",
+    "type": "string",
+    "default": "-1",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "leftSwipeUpPercentage",
+    "type": "float",
+    "default": "25",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "navPillColorAccent",
+    "type": "boolean",
+    "default": "false",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CursorControlKeys",
+      "LauncherGestureNavbarManager"
+    ]
+  },
+  {
+    "key": "rightSwipeUpAction",
+    "type": "string",
+    "default": "-1",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "rightSwipeUpPercentage",
+    "type": "float",
+    "default": "25",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "swipeUpPercentage",
+    "type": "float",
+    "default": "20",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "twoFingerSwipeUpAction",
+    "type": "string",
+    "default": "None",
+    "screen": "gesture_nav_prefs",
+    "readBy": [
+      "CustomNavGestures"
+    ]
+  },
+  {
+    "key": "force_hotspot",
+    "type": "boolean",
+    "default": "false",
+    "screen": "hotspot_prefs",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "hotSpotHideSSID",
+    "type": "boolean",
+    "default": "false",
+    "screen": "hotspot_prefs",
+    "readBy": [
+      "HotSpotController"
+    ]
+  },
+  {
+    "key": "hotSpotMaxClients",
+    "type": "float",
+    "default": "0",
+    "screen": "hotspot_prefs",
+    "readBy": [
+      "HotSpotController"
+    ]
+  },
+  {
+    "key": "hotSpotTimeoutSecs",
+    "type": "float",
+    "default": "0",
+    "screen": "hotspot_prefs",
+    "readBy": [
+      "HotSpotController"
+    ]
+  },
+  {
+    "key": "hotspotDisableApproval",
+    "type": "boolean",
+    "default": "false",
+    "screen": "hotspot_prefs",
+    "readBy": [
+      "HotSpotController"
+    ]
+  },
+  {
+    "key": "BlockQSPowerOnLockscreen",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "LockscreenProtectionFramework",
+      "LockscreenProtectionSystemUI"
+    ]
+  },
+  {
+    "key": "DWOpacity",
+    "type": "float",
+    "default": "192",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "DepthWallpaper"
+    ]
+  },
+  {
+    "key": "DWallpaperEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "DepthWallpaper"
+    ]
+  },
+  {
+    "key": "DWonAOD",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "DepthWallpaper"
+    ]
+  },
+  {
+    "key": "DisableLockScreenPill",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "DoubleTapSleepLockscreen",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "HideLockScreenUserAvatar",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "KGMiddleCustomText",
+    "type": "string",
+    "default": null,
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "KeyGuardDimAmount",
+    "type": "float",
+    "default": "-1",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "KeyguardBottomButtonsTransparent",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "SegmentorAI",
+    "type": "string",
+    "default": "0",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "DepthWallpaper"
+    ]
+  },
+  {
+    "key": "ShowChargingInfo",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "WakeUpToSecurityInput",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "EasyUnlock"
+    ]
+  },
+  {
+    "key": "carrierTextMod",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "carrierTextValue",
+    "type": "string",
+    "default": null,
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "easyUnlockEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "EasyUnlock"
+    ]
+  },
+  {
+    "key": "fingerprint_circle_hide",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "UDFPSManager"
+    ]
+  },
+  {
+    "key": "fingerprint_icon_hide",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "UDFPSManager"
+    ]
+  },
+  {
+    "key": "holdScreenTorchEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "shufflePinEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lock_screen_prefs",
+    "readBy": [
+      "KeyGuardPinScrambler"
+    ]
+  },
+  {
+    "key": "NetworkStatsMonthStart",
+    "type": "float",
+    "default": "1",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "NetworkStatsStartBase",
+    "type": "string",
+    "default": "0",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "NetworkStatsStartTime",
+    "type": "int",
+    "default": "00:00",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "NetworkStatsWeekStart",
+    "type": "string",
+    "default": "1",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "networkStatDLColor",
+    "type": "string",
+    "default": "-7617718",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "networkStatULColor",
+    "type": "string",
+    "default": "-351845",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "networkStatsColorful",
+    "type": "boolean",
+    "default": "false",
+    "screen": "lsqs_custom_text",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "AnimateFlashlight",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "KeyguardMods",
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "BrightnessRange",
+    "type": "string",
+    "default": "0,100",
+    "screen": "misc_prefs",
+    "readBy": [
+      "BrightnessRange"
+    ]
+  },
+  {
+    "key": "DisableOngoingNotifDismiss",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "NotificationManager"
+    ]
+  },
+  {
+    "key": "EnableClipboardSmartActions",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "FeatureFlagsMods"
+    ]
+  },
+  {
+    "key": "FastChargingWattage",
+    "type": "float",
+    "default": "5",
+    "screen": "misc_prefs",
+    "readBy": [
+      "BatteryDataProvider"
+    ]
+  },
+  {
+    "key": "ForceAODwCharging",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "KeyguardMods"
+    ]
+  },
+  {
+    "key": "HeadupAutoDismissNotificationDecay",
+    "type": "float",
+    "default": "5000",
+    "screen": "misc_prefs",
+    "readBy": [
+      "NotificationManager"
+    ]
+  },
+  {
+    "key": "InsecureScreenRecord",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenRecord",
+      "SystemScreenRecord"
+    ]
+  },
+  {
+    "key": "NTPServers",
+    "type": "string",
+    "default": "0.pool.ntp.org;1.pool.ntp.org",
+    "screen": "misc_prefs",
+    "readBy": []
+  },
+  {
+    "key": "NotificationAODIconLimit",
+    "type": "string",
+    "default": null,
+    "screen": "misc_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "PXInSettings",
+    "type": "boolean",
+    "default": "true",
+    "screen": "misc_prefs",
+    "readBy": [
+      "PXSettingsLauncher"
+    ]
+  },
+  {
+    "key": "PickToShowAmbient",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "RecentClearAllReposition",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ClearAllButtonMod"
+    ]
+  },
+  {
+    "key": "ScreenshotChordInsecure",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenshotManager"
+    ]
+  },
+  {
+    "key": "SleepOnFlatScreen",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "FaceUpScreenSleep"
+    ]
+  },
+  {
+    "key": "StatusbarAppSwitchIconEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "StatusbarLongpressAppSwitch",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "StatusbarGestures"
+    ]
+  },
+  {
+    "key": "SyncNTPTime",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": []
+  },
+  {
+    "key": "TapToShowAmbient",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "TimeSyncInterval",
+    "type": "float",
+    "default": "24",
+    "screen": "misc_prefs",
+    "readBy": []
+  },
+  {
+    "key": "advancedPowerMenu",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "PowerMenu"
+    ]
+  },
+  {
+    "key": "allScreenRotations",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenRotation",
+      "StatusbarSize"
+    ]
+  },
+  {
+    "key": "controlFlashWithVolKeys",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "disableScreenshotSound",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenshotManager"
+    ]
+  },
+  {
+    "key": "displayOverride",
+    "type": "float",
+    "default": "100",
+    "screen": "misc_prefs",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "displayOverrideEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "doubleTapToWake",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "enable_high_brightness_flashlight",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "SystemUtils"
+    ]
+  },
+  {
+    "key": "fingerprintWhileDozing",
+    "type": "boolean",
+    "default": "true",
+    "screen": "misc_prefs",
+    "readBy": [
+      "FingerprintWhileDozing"
+    ]
+  },
+  {
+    "key": "noCutoutEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "StatusbarMods",
+      "StatusbarSize"
+    ]
+  },
+  {
+    "key": "notificationDefaultExpansion",
+    "type": "string",
+    "default": "0",
+    "screen": "misc_prefs",
+    "readBy": [
+      "NotificationExpander"
+    ]
+  },
+  {
+    "key": "notificationExpandallEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "NotificationExpander"
+    ]
+  },
+  {
+    "key": "pin_wireless_adb",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "AdbWifiPortPin"
+    ]
+  },
+  {
+    "key": "pinned_adb_port",
+    "type": "string",
+    "default": "5555",
+    "screen": "misc_prefs",
+    "readBy": [
+      "AdbWifiPortPin"
+    ]
+  },
+  {
+    "key": "sysui_tuner",
+    "type": "boolean",
+    "default": "false",
+    "screen": "misc_prefs",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "volumeStps",
+    "type": "float",
+    "default": "10",
+    "screen": "misc_prefs",
+    "readBy": [
+      "MiscSettings"
+    ]
+  },
+  {
+    "key": "HideNavbar",
+    "type": "boolean",
+    "default": "false",
+    "screen": "nav_prefs",
+    "readBy": [
+      "LauncherGestureNavbarManager"
+    ]
+  },
+  {
+    "key": "AlternativeThemedAppIcon",
+    "type": "boolean",
+    "default": "false",
+    "screen": "own_prefs_header",
+    "readBy": []
+  },
+  {
+    "key": "AutoUpdate",
+    "type": "boolean",
+    "default": "false",
+    "screen": "own_prefs_header",
+    "readBy": []
+  },
+  {
+    "key": "GoogleSettingsDesign",
+    "type": "boolean",
+    "default": "false",
+    "screen": "own_prefs_header",
+    "readBy": []
+  },
+  {
+    "key": "TemperatureUnitF",
+    "type": "boolean",
+    "default": "false",
+    "screen": "own_prefs_header",
+    "readBy": [
+      "KeyguardMods",
+      "ThermalProvider"
+    ]
+  },
+  {
+    "key": "UpdateWifiOnly",
+    "type": "boolean",
+    "default": "false",
+    "screen": "own_prefs_header",
+    "readBy": []
+  },
+  {
+    "key": "appLanguage",
+    "type": "string",
+    "default": null,
+    "screen": "own_prefs_header",
+    "readBy": []
+  },
+  {
+    "key": "PM_AllowDowngrade",
+    "type": "boolean",
+    "default": "false",
+    "screen": "packagemanger_prefs",
+    "readBy": [
+      "PackageManager"
+    ]
+  },
+  {
+    "key": "PM_AllowMismatchedSignature",
+    "type": "boolean",
+    "default": "false",
+    "screen": "packagemanger_prefs",
+    "readBy": [
+      "PackageManager"
+    ]
+  },
+  {
+    "key": "doublePressPowerButtonScreenOff",
+    "type": "string",
+    "default": "0",
+    "screen": "physical_buttons_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "doublePressPowerButtonScreenOn",
+    "type": "string",
+    "default": "0",
+    "screen": "physical_buttons_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "longPressPowerButtonScreenOff",
+    "type": "string",
+    "default": "0",
+    "screen": "physical_buttons_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "longPressPowerButtonScreenOn",
+    "type": "string",
+    "default": "0",
+    "screen": "physical_buttons_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "longPressVolumeDownButtonScreenOff",
+    "type": "string",
+    "default": "0",
+    "screen": "physical_buttons_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "longPressVolumeUpButtonScreenOff",
+    "type": "string",
+    "default": "0",
+    "screen": "physical_buttons_prefs",
+    "readBy": [
+      "ScreenOffKeys"
+    ]
+  },
+  {
+    "key": "QQSRows",
+    "type": "float",
+    "default": "2",
+    "screen": "qs_tile_qty_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QQSRowsL",
+    "type": "float",
+    "default": "1",
+    "screen": "qs_tile_qty_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QSColQty",
+    "type": "float",
+    "default": "4",
+    "screen": "qs_tile_qty_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QSColQtyL",
+    "type": "float",
+    "default": "8",
+    "screen": "qs_tile_qty_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QSRowQty",
+    "type": "float",
+    "default": "4",
+    "screen": "qs_tile_qty_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QSRowQtyL",
+    "type": "float",
+    "default": "2",
+    "screen": "qs_tile_qty_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QSAutoBrightnessToggle",
+    "type": "boolean",
+    "default": "false",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "QSBrightnessSlider"
+    ]
+  },
+  {
+    "key": "QSFooterBuildNumberEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "QSFooterBuildNumberText",
+    "type": "string",
+    "default": null,
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "QSLabelScaleFactor",
+    "type": "float",
+    "default": "0",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "QSPulldownPercent",
+    "type": "float",
+    "default": "25",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "StatusbarGestures"
+    ]
+  },
+  {
+    "key": "QSPulldownSide",
+    "type": "string",
+    "default": "1",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "StatusbarGestures"
+    ]
+  },
+  {
+    "key": "QSPullodwnEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "StatusbarGestures"
+    ]
+  },
+  {
+    "key": "QSSecondaryLabelScaleFactor",
+    "type": "float",
+    "default": "0",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "QSTileGrid"
+    ]
+  },
+  {
+    "key": "UnMuteVolumePCT",
+    "type": "float",
+    "default": "50",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "SystemUtils"
+    ]
+  },
+  {
+    "key": "oneFingerPullupEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "StatusbarGestures"
+    ]
+  },
+  {
+    "key": "qs_layout_order",
+    "type": "string",
+    "default": "brightness,qs,media",
+    "screen": "quicksettings_prefs",
+    "readBy": [
+      "QSBrightnessSlider"
+    ]
+  },
+  {
+    "key": "networkTrafficColorful",
+    "type": "boolean",
+    "default": "false",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficDLColor",
+    "type": "string",
+    "default": "-7617718",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficInterval",
+    "type": "float",
+    "default": "1",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficMode",
+    "type": "string",
+    "default": "0",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficOpacity",
+    "type": "float",
+    "default": "100",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficRXTop",
+    "type": "boolean",
+    "default": "true",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficShadow",
+    "type": "string",
+    "default": "0",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficShowIcons",
+    "type": "boolean",
+    "default": "true",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficShowInBits",
+    "type": "boolean",
+    "default": "false",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficThreshold",
+    "type": "string",
+    "default": "10",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficULColor",
+    "type": "string",
+    "default": "-351845",
+    "screen": "sbqs_network_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "FlatStandbyTime",
+    "type": "float",
+    "default": "5",
+    "screen": "sleep_on_flat_prefs",
+    "readBy": [
+      "FaceUpScreenSleep"
+    ]
+  },
+  {
+    "key": "SleepOnFlatRespectWakeLock",
+    "type": "boolean",
+    "default": "true",
+    "screen": "sleep_on_flat_prefs",
+    "readBy": [
+      "FaceUpScreenSleep"
+    ]
+  },
+  {
+    "key": "BBAnimateCharging",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBOnBottom",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBOnlyWhileCharging",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBOpacity",
+    "type": "float",
+    "default": "100",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBSetCentered",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBarColorful",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBarEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBarHeight",
+    "type": "float",
+    "default": "50",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BBarTransitColors",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "batteryChargingColor",
+    "type": "string",
+    "default": "-16711936",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "batteryCriticalColor",
+    "type": "string",
+    "default": "-65536",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "batteryFastChargingColor",
+    "type": "string",
+    "default": "-16776961",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "batteryPowerSaveColor",
+    "type": "string",
+    "default": "0xFFFFBF00",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "batteryWarningColor",
+    "type": "string",
+    "default": "-256",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "batteryWarningRange",
+    "type": "string",
+    "default": "15,40",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "indicateCharging",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "indicateFastCharging",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "indicatePowerSave",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_batterybar_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "AfterSBCSmall",
+    "type": "boolean",
+    "default": "true",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "BeforeSBCSmall",
+    "type": "boolean",
+    "default": "true",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "DateFormatAfterSBC",
+    "type": "string",
+    "default": "",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "DateFormatBeforeSBC",
+    "type": "string",
+    "default": "",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCAfterClockColor",
+    "type": "string",
+    "default": "-1",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCAmPmStyle",
+    "type": "string",
+    "default": "2",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCBeforeClockColor",
+    "type": "string",
+    "default": "-1",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCClockColor",
+    "type": "string",
+    "default": "-1",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCClockColorful",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCClockTextEffect",
+    "type": "string",
+    "default": "0",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCDayOfWeekMode",
+    "type": "string",
+    "default": "0",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBCShowSeconds",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "SBClockLoc",
+    "type": "string",
+    "default": "0",
+    "screen": "statusbar_clock_prefs",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "DoubleTapSleep",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "ScreenGestures"
+    ]
+  },
+  {
+    "key": "HidePrivacyChip",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "HideRoamingState",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "KGIgnoredIcons",
+    "type": "string-set",
+    "default": null,
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusIconTuner"
+    ]
+  },
+  {
+    "key": "LTE4GIconMod",
+    "type": "string",
+    "default": "0",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "FeatureFlagsMods"
+    ]
+  },
+  {
+    "key": "NotificationIconLimit",
+    "type": "string",
+    "default": null,
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "QSIgnoredIcons",
+    "type": "string-set",
+    "default": null,
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusIconTuner"
+    ]
+  },
+  {
+    "key": "SBIgnoredIcons",
+    "type": "string-set",
+    "default": null,
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusIconTuner"
+    ]
+  },
+  {
+    "key": "VolteIconEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "VowifiIconEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "clockMultiRowStartOffset",
+    "type": "float",
+    "default": "2",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "combinedSignalEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "multiRowClockBottom",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkOnSBEnabled",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "networkTrafficPosition",
+    "type": "string",
+    "default": "2",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "notificationAreaMultiRow",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods",
+      "StatusbarSize"
+    ]
+  },
+  {
+    "key": "qsStatusbarPaddings",
+    "type": "string",
+    "default": "-.5,100.5",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "statusbarHeightFactor",
+    "type": "float",
+    "default": "100",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods",
+      "StatusbarSize"
+    ]
+  },
+  {
+    "key": "statusbarPaddings",
+    "type": "string",
+    "default": "-.5,100.5",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "StatusbarMods"
+    ]
+  },
+  {
+    "key": "systemIconSortPlan",
+    "type": "string",
+    "default": "0",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "MultiStatusbarRows"
+    ]
+  },
+  {
+    "key": "systemIconsMultiRow",
+    "type": "boolean",
+    "default": "false",
+    "screen": "statusbar_settings",
+    "readBy": [
+      "MultiStatusbarRows",
+      "StatusbarSize"
+    ]
+  },
+  {
+    "key": "EnableGoogleRecents",
+    "type": "boolean",
+    "default": "false",
+    "screen": "taskbar_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "TaskbarAsRecents",
+    "type": "boolean",
+    "default": "true",
+    "screen": "taskbar_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "TaskbarOnLauncher",
+    "type": "boolean",
+    "default": "false",
+    "screen": "taskbar_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "TaskbarRadiusOverride",
+    "type": "float",
+    "default": "1",
+    "screen": "taskbar_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "taskBarMode",
+    "type": "string",
+    "default": "0",
+    "screen": "taskbar_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "taskbarHeightOverride",
+    "type": "float",
+    "default": "100",
+    "screen": "taskbar_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "ForceThemedLauncherIcons",
+    "type": "boolean",
+    "default": "false",
+    "screen": "theming_prefs",
+    "readBy": [
+      "LauncherThemedIcons"
+    ]
+  },
+  {
+    "key": "ThreeButtonCenter",
+    "type": "string",
+    "default": "home",
+    "screen": "three_button_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "ThreeButtonLayoutMod",
+    "type": "boolean",
+    "default": "false",
+    "screen": "three_button_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "ThreeButtonLeft",
+    "type": "string",
+    "default": "back",
+    "screen": "three_button_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  },
+  {
+    "key": "ThreeButtonRight",
+    "type": "string",
+    "default": "recent",
+    "screen": "three_button_prefs",
+    "readBy": [
+      "TaskbarActivator"
+    ]
+  }
+]
