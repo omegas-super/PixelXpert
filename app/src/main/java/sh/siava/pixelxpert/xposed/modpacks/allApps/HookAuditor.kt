@@ -53,7 +53,12 @@ class HookAuditor(context: Context) : XposedModPack(context) {
 							FrameworkInspector.inspect(fwLoader)
 						}
 
-						Constants.LAUNCHER_PACKAGE -> LauncherInspector.inspect(PRParam.classLoader)
+						// Both launchers are audited: a ROM ships one of them, and
+						// which one is not knowable from the process name alone.
+						// Without the second branch a Trebuchet device produced no
+						// audit reply at all, because this `when` fell through to null.
+						Constants.LAUNCHER_PACKAGE,
+						Constants.TREBUCHET_PACKAGE -> LauncherInspector.inspect(PRParam.classLoader)
 
 						else -> null
 					}
