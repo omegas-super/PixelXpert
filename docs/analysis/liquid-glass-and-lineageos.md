@@ -27,8 +27,13 @@ building.
   a `RenderNode` on every pre-draw. It works on legacy View surfaces and is
   unproven on Compose surfaces.
 - **The blocking problem is not graphics, it is packaging.** PixelXpert is scoped
-  to Pixel packages. On LineageOS without GApps, the Launcher and Dialer packs
-  cannot load at all, and SystemUI is AOSP rather than Pixel.
+  to Pixel packages. A Google apps package supplies the launcher and dialer, so
+  those packs gain a target process — but it does **not** replace SystemUI, which
+  stays AOSP. The 31 SystemUI packs, where every glass surface lives, still face
+  the AOSP-versus-Pixel question.
+- **NikGapps publishes no Android 17 build** (checked 2026-11-01). Its newest
+  package targets Android 16. Verify the device's actual Android version before
+  building on the assumption that Android 17 + NikGapps is a supported pair.
 - The effect is a *refraction of what is behind it*. A surface with no View
   ancestor to sample produces nothing visible.
 
@@ -209,27 +214,49 @@ This is the finding that matters more than any graphics question.
 and `app/src/main/res/values/xp_module_scope.xml` scopes the module to exactly
 those five packages.
 
-On a LineageOS 24.0 device:
+Two configurations matter, and they have different answers.
 
-| Package | Present on LineageOS 24.0? | Consequence |
+**Without a Google apps package.** LineageOS ships Trebuchet, not Pixel Launcher.
+A pack annotated `@LauncherModPack` is registered for
+`com.google.android.apps.nexuslauncher`; if that package is not installed the
+process never starts, so the pack is never constructed and produces no log line
+at all. This is the `loadModPacks` target match doing exactly what it is supposed
+to do — see [modpack-lifecycle](../architecture/modpack-lifecycle.md).
+
+| Package | Present on bare LineageOS 24.0? | Consequence |
 | --- | --- | --- |
-| `com.android.systemui` | Yes, but it is **AOSP** SystemUI, not Pixel SystemUI | Hooks that name Pixel-only classes silently no-op |
+| `com.android.systemui` | Yes, but **AOSP** SystemUI | Hooks naming Pixel-only classes silently no-op |
 | `android` (system server) | Yes | Framework packs are the most portable |
 | `com.android.settings` | Yes, but AOSP Settings internals | Settings packs may or may not resolve |
 | `com.android.server.telecom` | Yes | Telecom packs are plausible |
-| `com.google.android.apps.nexuslauncher` | **Only with a Google apps package** | 7 launcher packs cannot load without GApps |
-| `com.google.android.dialer` | **Only with a Google apps package** | 1 dialer pack cannot load without GApps |
+| `com.google.android.apps.nexuslauncher` | No | 7 launcher packs cannot load |
+| `com.google.android.dialer` | No | 1 dialer pack cannot load |
 
-LineageOS ships Trebuchet, not Pixel Launcher, as the default launcher. A pack
-annotated `@LauncherModPack` is registered for
-`com.google.android.apps.nexuslauncher`; on a device without that package the
-process never starts, so the pack is never constructed and produces no log line
-at all. This is the `loadModPacks` target match doing exactly what it is
-supposed to do — see [modpack-lifecycle](../architecture/modpack-lifecycle.md).
+**With NikGapps Full (or Stock) installed.** This is the configuration the user
+runs, and it changes the answer for two of the six packages.
 
-The SystemUI case is subtler and more damaging. The package name matches, so the
-pack loads and logs its `Start Error Dump` or nothing at all, but the classes it
-hooks may not exist. `SystemUIInspector` already encodes this divergence: it
+NikGapps' own package definitions
+([nikgapps.com/downloads](https://nikgapps.com/downloads)) state that **Stock**
+includes "Pixel Specifics … Pixel Launcher (Replaces Stock Launcher)" and that
+**Basic** includes "Google Dialer (Replaces AOSP Dialer)". **Full** is defined as
+"Everything from Stock" plus Gmail, Android Auto, Device Policy and Chrome.
+Therefore NikGapps Full installs both packages:
+
+| Package | Installed by NikGapps Full? | Effect |
+| --- | --- | --- |
+| `com.google.android.apps.nexuslauncher` | **Yes** — via the Stock tier | The 7 launcher packs have a target process |
+| `com.google.android.dialer` | **Yes** — via the Basic tier | The dialer pack has a target process |
+| `com.android.settings` | Yes, still AOSP Settings | NikGapps does not replace Settings |
+| `com.android.systemui` | Yes, still AOSP SystemUI | **NikGapps does not replace SystemUI** |
+
+The SystemUI row is the one that matters for a glass port, and it is easy to get
+wrong. Installing GApps puts Google *applications* on the device; it does not
+replace the ROM's SystemUI. The status bar, QS panel, shade and keyguard remain
+LineageOS/AOSP SystemUI. So 31 SystemUI packs — the largest group, and the group
+every glass surface lives in — still face the AOSP-versus-Pixel class-name
+question.
+
+The SystemUI divergence is already encoded in this repo. `SystemUIInspector`
 checks `HomeStatusBarIconBlockListBinder` to decide whether the device is on the
 **legacy View** status bar or the **Compose** path, and marks one set of targets
 `utilized = false` accordingly.
@@ -239,6 +266,33 @@ checks `HomeStatusBarIconBlockListBinder` to decide whether the device is on the
 cannot be resolved without a device or a LineageOS build tree, and no build is
 possible on this machine (no JDK, no SDK). The hook-audit path exists for exactly
 this question — run it on a real device before planning any port.
+
+### A second risk: NikGapps has no Android 17 build
+
+Checked 2026-11-01. NikGapps' site states it "Supports Android 16 (Baklava) with
+regular updates and Android 15 (V), 14 (U), 13 (T), 12L (SL), 12 (S), 11 (R),
+10 (Q) on need basis" — Android 17 is not listed.
+
+The SourceForge tree agrees. `Releases/` contains Android-16, Android-15,
+Android-14, Android-13, Android-12.1, Android-12, Android-11 and Android-10.
+`Config-Releases/` contains the same set, with Android-16 updated within the last
+day at time of check. **There is no Android-17 directory in either.** The newest
+artefact is `NikGapps-gapps-arm64-16-20261031-unofficial.zip`.
+
+**Uncertain, and important:** how an Android 16 GApps package is running on a
+LineageOS 24.0 (Android 17) device at all. Three explanations are possible and
+this document cannot distinguish them without the device:
+
+1. The user is in fact on an Android 16-based LineageOS 23.2 build, not 24.0.
+2. An Android 17 build exists outside the public SourceForge tree (Elite or
+   private channel).
+3. It was force-installed across the API boundary and works by luck.
+
+Verify with `adb shell getprop ro.build.version.release` and
+`adb shell getprop ro.lineage.version` before relying on any of this. If the
+device really is on Android 17 with an Android 16 GApps package, that combination
+is unsupported by NikGapps and is its own source of instability — do not debug a
+glass feature on top of it.
 
 ### Which surfaces can carry the effect
 
@@ -277,6 +331,23 @@ animate every frame. The status bar is the worst first choice.
 ## Walkthrough
 
 A minimal, reversible port. Each step is independently verifiable.
+
+### 0. Establish what the device actually is
+
+Before any code, on the target device:
+
+```bash
+adb shell getprop ro.build.version.release     # expect 17
+adb shell getprop ro.build.version.sdk         # expect 37
+adb shell getprop ro.lineage.version           # expect lineage-24.0-*
+adb shell pm list packages | grep -E 'nexuslauncher|google.android.dialer'
+```
+
+The last command decides whether the launcher and dialer packs have a target
+process at all. If those two package names are absent, 8 packs are dead and no
+amount of renderer work revives them. This step exists because NikGapps publishes
+no Android 17 build — see the second risk above — so the device's actual version
+is a fact to establish, not assume.
 
 ### 1. Add the dependency
 
@@ -383,8 +454,13 @@ did not resolve.
 - **Treat every surface as AOSP-vs-Pixel divergent.** A class that resolves on
   Pixel firmware may not exist on LineageOS SystemUI. Resolve through
   `ReflectedClass.ofIfPossible` and branch on `.clazz`, never assume.
-- **Do not claim a LineageOS launcher or dialer port without a GApps decision.**
-  The scoped package names are Google's.
+- **Do not claim a LineageOS launcher or dialer port without checking the package
+  is installed.** The scoped names are Google's; a GApps package supplies them,
+  but nothing guarantees it.
+- **Do not assume GApps makes SystemUI Pixel-like.** It does not. The ROM's
+  SystemUI is unchanged by installing Google apps.
+- **Do not build on an unsupported GApps/ROM version pair.** Confirm
+  `ro.build.version.release` matches the GApps package's Android version.
 
 ---
 
@@ -398,7 +474,9 @@ did not resolve.
 | Glass shows a recursive smeared copy of itself | The bound `ViewGroup` contains the glass view | Bind a sibling or an ancestor that excludes the host |
 | Frame rate collapses when the surface animates | `record()` re-records the whole target subtree every pre-draw | Bind a smaller subtree; avoid the status bar and QS panel as first targets |
 | `RuntimeException: Error loading shader: <id>` | `R.raw.liquidglass_effect` was stripped or renamed by shrinking | Keep the raw resource; check `minifyEnabled` in the release build type |
-| Pack never runs on LineageOS, no log at all | Target package absent: launcher or dialer without GApps | Confirm the package is installed, or re-scope the annotation |
+| Pack never runs on LineageOS, no log at all | Target package absent: launcher or dialer without a Google apps package | `adb shell pm list packages \| grep nexuslauncher`; install Stock/Full GApps or re-scope the annotation |
+| Pack never runs even with NikGapps Full | The GApps package did not install Pixel Launcher, or the device is on a different launcher | Check the package list; NikGapps Stock tier is what carries Pixel Launcher |
+| Everything is unstable, unrelated crashes | GApps package Android version does not match the ROM's Android version | Compare `ro.build.version.release` with the NikGapps release folder used |
 | Pack runs but hooks nothing on LineageOS SystemUI | Pixel-only class name; `ReflectedClass.of` returned null and the builder short-circuited to an empty set | Run the hook audit; use `ofIfPossible` and branch on `.clazz` |
 | Glass renders but shows the wrong background | Bound a container that is not visually behind the glass | Bind the container that actually paints the background |
 | Effect disappears after a hot reload | The view was not saved, or `onUnloaded` removed it and nothing re-added it | Save the `View` in `onSaveHotReloadState`, or re-add on reload |
@@ -409,8 +487,10 @@ did not resolve.
 
 Before proposing a glass feature:
 
-- [ ] The target package exists on LineageOS 24.0 without GApps, or GApps is a
-      stated prerequisite
+- [ ] The device's actual Android version is confirmed on-device, not assumed
+- [ ] `com.google.android.apps.nexuslauncher` and `com.google.android.dialer` are
+      present if a launcher or dialer feature is in scope
+- [ ] The target package exists on the device
 - [ ] The surface is a legacy View hierarchy, not Compose — or the Compose case
       is explicitly marked unproven
 - [ ] The sampling source is a `ViewGroup` that does not contain the glass view
@@ -447,3 +527,5 @@ Before proposing a glass feature:
 - [`core/build.gradle`](https://github.com/QmDeve/AndroidLiquidGlassView/blob/master/core/build.gradle) — `compileSdk 37`, `minSdk 24`, Java 21, dependencies
 - [LineageOS Changelog 32 — Slick Seventeen](https://lineageos.org/Changelog-32/) — LineageOS 24.0 = Android 17, announcement date, device roster, kernel policy
 - [LineageOS device list](https://wiki.lineageos.org/devices/) — supported devices
+- [NikGapps package definitions](https://nikgapps.com/downloads) — what Core / Basic / Omni / Stock / Full each install; Stock carries Pixel Launcher, Basic carries Google Dialer
+- [NikGapps SourceForge tree](https://sourceforge.net/projects/nikgapps/files/) — release folders present; no Android-17 directory as of 2026-11-01
