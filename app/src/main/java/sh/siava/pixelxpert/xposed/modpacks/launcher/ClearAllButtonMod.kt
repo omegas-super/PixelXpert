@@ -16,6 +16,7 @@ import sh.siava.pixelxpert.xposed.XPLauncher
 import sh.siava.pixelxpert.xposed.XPrefs.Xprefs
 import sh.siava.pixelxpert.xposed.XposedModPack
 import sh.siava.pixelxpert.xposed.annotations.LauncherModPack
+import sh.siava.pixelxpert.xposed.annotations.TrebuchetModPack
 import sh.siava.pixelxpert.xposed.utils.SystemUtils
 import sh.siava.pixelxpert.xposed.utils.reflection.ReflectedClass
 import sh.siava.pixelxpert.xposed.utils.reflection.Reflection.findMethodBestMatch
@@ -38,6 +39,7 @@ import java.lang.reflect.Method
  * via [XPLauncher.moduleResources] rather than the launcher's.
  */
 @LauncherModPack
+@TrebuchetModPack
 class ClearAllButtonMod(context: Context) : XposedModPack(context) {
 	private var recentView: Any? = null
 	private var clearAllIcon: ImageView? = null

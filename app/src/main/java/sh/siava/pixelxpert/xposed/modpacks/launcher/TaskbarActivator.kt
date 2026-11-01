@@ -7,6 +7,7 @@ import io.github.libxposed.api.XposedModuleInterface
 import sh.siava.pixelxpert.xposed.XPrefs.Xprefs
 import sh.siava.pixelxpert.xposed.XposedModPack
 import sh.siava.pixelxpert.xposed.annotations.LauncherModPack
+import sh.siava.pixelxpert.xposed.annotations.TrebuchetModPack
 import sh.siava.pixelxpert.xposed.utils.SystemUtils
 import sh.siava.pixelxpert.xposed.utils.reflection.ReflectedClass
 import sh.siava.pixelxpert.xposed.utils.reflection.ReflectedClass.ReflectionConsumer
@@ -37,6 +38,7 @@ import java.util.regex.Pattern
  * re-register - and `taskBarMode` is read twice from prefs, quirk preserved.
  */
 @LauncherModPack
+@TrebuchetModPack
 class TaskbarActivator(context: Context) : XposedModPack(context) {
 	private var ThreeButtonLayoutMod = false
 	private var ThreeButtonLeft: String = "back"

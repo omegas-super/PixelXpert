@@ -8,6 +8,7 @@ import io.github.libxposed.api.XposedModuleInterface
 import sh.siava.pixelxpert.xposed.XPrefs.Xprefs
 import sh.siava.pixelxpert.xposed.XposedModPack
 import sh.siava.pixelxpert.xposed.annotations.LauncherModPack
+import sh.siava.pixelxpert.xposed.annotations.TrebuchetModPack
 import sh.siava.pixelxpert.xposed.utils.GoogleMonochromeIconFactory
 import sh.siava.pixelxpert.xposed.utils.reflection.ReflectedClass
 import sh.siava.pixelxpert.xposed.utils.reflection.Reflection.callMethod
@@ -36,6 +37,7 @@ import sh.siava.pixelxpert.xposed.utils.reflection.Reflection.setAdditionalInsta
  * model are force-reloaded on the main thread so existing icons re-theme.
  */
 @LauncherModPack
+@TrebuchetModPack
 class LauncherThemedIcons(context: Context) : XposedModPack(context) {
 	private var mIconBitmapSize = 0
 	private var LAS: Any? = null

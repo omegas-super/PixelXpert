@@ -13,6 +13,7 @@ import sh.siava.pixelxpert.Constants
 import sh.siava.pixelxpert.xposed.XPrefs.Xprefs
 import sh.siava.pixelxpert.xposed.XposedModPack
 import sh.siava.pixelxpert.xposed.annotations.LauncherModPack
+import sh.siava.pixelxpert.xposed.annotations.TrebuchetModPack
 import sh.siava.pixelxpert.xposed.utils.SystemUtils
 import sh.siava.pixelxpert.xposed.utils.reflection.HookHelper
 import sh.siava.pixelxpert.xposed.utils.reflection.ReflectedClass
@@ -41,6 +42,7 @@ import sh.siava.pixelxpert.xposed.utils.toolkit.Logger
  */
 //noinspection ConstantValue
 @LauncherModPack
+@TrebuchetModPack
 class CustomNavGestures(context: Context) : XposedModPack(context) {
 	private var FCHandled = false
 	private var leftSwipeUpPercentage = 0.25f

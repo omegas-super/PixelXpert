@@ -3,6 +3,7 @@
     <string-array name="module_scope">
         <item>com.android.systemui</item> <!-- systemUI -->
         <item>com.google.android.apps.nexuslauncher</item> <!-- Pixel Launcher - Taskbar -->
+        <item>com.android.launcher3</item> <!-- Trebuchet (AOSP/LineageOS launcher) -->
         <item>android</item>  <!-- System Framework -->
         <item>com.android.settings</item> <!-- settings app -->
         <item>com.google.android.dialer</item> <!-- google dialer -->
@@ -11,5 +12,6 @@
 	<string-array name="root_requirement">
 		<item>com.android.systemui</item> <!-- systemUI -->
 		<item>com.google.android.apps.nexuslauncher</item>
+		<item>com.android.launcher3</item>
 	</string-array>
 </resources>

@@ -6,6 +6,7 @@ import io.github.libxposed.api.XposedModuleInterface
 import sh.siava.pixelxpert.BuildConfig
 import sh.siava.pixelxpert.xposed.XposedModPack
 import sh.siava.pixelxpert.xposed.annotations.LauncherModPack
+import sh.siava.pixelxpert.xposed.annotations.TrebuchetModPack
 import sh.siava.pixelxpert.xposed.utils.reflection.ReflectedClass
 import sh.siava.pixelxpert.xposed.utils.reflection.Reflection
 
@@ -20,6 +21,7 @@ import sh.siava.pixelxpert.xposed.utils.reflection.Reflection
  * construction throws reflectively and is swallowed.
  */
 @LauncherModPack
+@TrebuchetModPack
 class PixelXpertIconUpdater(context: Context) : XposedModPack(context) {
 	private var LauncherModel: Any? = null
 

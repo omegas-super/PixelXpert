@@ -28,6 +28,7 @@ object HooksMonitor {
 	private val TRACKED = mapOf(
 		Constants.SYSTEM_UI_PACKAGE to SYSTEM_UI,
 		Constants.LAUNCHER_PACKAGE to "com.google.android.apps.nexuslauncher",
+		Constants.TREBUCHET_PACKAGE to Constants.TREBUCHET_PACKAGE,
 		Constants.SETTINGS_PACKAGE to "com.android.settings",
 		Constants.DIALER_PACKAGE to "com.google.android.dialer",
 	)

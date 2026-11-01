@@ -47,6 +47,16 @@ object Constants {
 	const val DIALER_PACKAGE: String = "com.google.android.dialer"
 
 	/**
+	 * Trebuchet, the launcher an AOSP-based ROM ships instead of Pixel Launcher.
+	 *
+	 * Its own manifest declares `package="com.android.launcher3"`, which is also
+	 * the package the launcher packs' hook targets live in. Backs
+	 * `@TrebuchetModPack`, so a ROM without a Google apps package still has a
+	 * process for the launcher packs to run in.
+	 */
+	const val TREBUCHET_PACKAGE: String = "com.android.launcher3"
+
+	/**
 	 * The navigation gestures the gesture handler broadcasts instead of
 	 * injecting key events, so a listener in the launcher can act on them
 	 * without the framework seeing a synthetic back or home press.
