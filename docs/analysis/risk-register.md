@@ -540,6 +540,40 @@ real Trebuchet build. If they do not, the packs' existing
 
 ---
 
+### R20 — The launcher audit returns nothing on a non-Pixel launcher
+
+**Severity:** High
+**Detection:** request an audit on a Trebuchet device and watch for a reply
+
+`HookAuditor` dispatches on the target package with a `when`, and only the Pixel
+Launcher branch existed:
+
+```kotlin
+Constants.LAUNCHER_PACKAGE -> LauncherInspector.inspect(PRParam.classLoader)
+else -> null
+```
+
+The result is guarded by `if (report != null)`, so a `null` produces no broadcast
+at all. On a Trebuchet device the launcher branch never matched, the `when` fell
+through, and the audit silently returned nothing — no report, no error, no
+timeout message.
+
+`LauncherInspector` compounded it by hardcoding the Pixel package in both the
+report's `packageName` and its `processName`, so even a successful audit would
+have described a package the device does not have.
+
+**Why it is high:** this is the instrument that answers "does this module work on
+my ROM". On a non-Pixel launcher it returns silence, which reads as "not hooked"
+rather than "not asked".
+
+**Mitigation:** dispatch both launcher packages and report the process the module
+is actually running in. Fixed on branch `fix/lineageos-scope-and-trebuchet` as
+commit `a468e16c`, and confirmed in a compiled artifact: `com.android.launcher3`
+and the `LauncherInspector` class both appear in `classes.dex` of CI build
+41317346425.
+
+---
+
 ### R13 — No local toolchain in this checkout
 
 **Severity:** Low (environmental)
