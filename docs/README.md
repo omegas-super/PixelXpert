@@ -104,6 +104,7 @@ Dated assessments. These describe a moment in time and are expected to age.
 | [analysis/risk-register.md](analysis/risk-register.md) | Known hazards in the codebase, ranked, with detection and mitigation |
 | [analysis/agent-readiness.md](analysis/agent-readiness.md) | What an autonomous agent can and cannot do here, and why |
 | [analysis/liquid-glass-and-lineageos.md](analysis/liquid-glass-and-lineageos.md) | Research: iOS-style glass effects on LineageOS 24 / Android 17, `AndroidLiquidGlassView` internals, and the packaging blockers that matter more than the renderer |
+| [analysis/lineageos-setup.md](analysis/lineageos-setup.md) | Which packages PixelXpert needs on LineageOS 24 / Android 17, what GApps does and does not satisfy, and the hook-audit verification path |
 
 ---
 

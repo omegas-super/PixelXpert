@@ -31,9 +31,10 @@ building.
   those packs gain a target process — but it does **not** replace SystemUI, which
   stays AOSP. The 31 SystemUI packs, where every glass surface lives, still face
   the AOSP-versus-Pixel question.
-- **NikGapps publishes no Android 17 build** (checked 2026-11-01). Its newest
-  package targets Android 16. Verify the device's actual Android version before
-  building on the assumption that Android 17 + NikGapps is a supported pair.
+- **NikGapps has no Android 17 build upstream**, but the `projectnikgapps` fork
+  targets Android 17 explicitly (`NikGappsConfig("17")`, `Version=40`, and
+  `--android-version 17` in its registry tooling). Confirm the installed package
+  with `getprop` rather than assuming.
 - The effect is a *refraction of what is behind it*. A surface with no View
   ancestor to sample produces nothing visible.
 
@@ -267,32 +268,35 @@ cannot be resolved without a device or a LineageOS build tree, and no build is
 possible on this machine (no JDK, no SDK). The hook-audit path exists for exactly
 this question — run it on a real device before planning any port.
 
-### A second risk: NikGapps has no Android 17 build
+### Android 17 GApps: resolved by the projectnikgapps fork
 
-Checked 2026-11-01. NikGapps' site states it "Supports Android 16 (Baklava) with
-regular updates and Android 15 (V), 14 (U), 13 (T), 12L (SL), 12 (S), 11 (R),
-10 (Q) on need basis" — Android 17 is not listed.
+An earlier revision of this document flagged that upstream NikGapps publishes no
+Android 17 package, and that an Android 16 package on a LineageOS 24.0 device
+would be an unsupported pairing. That concern is **resolved** for this project.
 
-The SourceForge tree agrees. `Releases/` contains Android-16, Android-15,
-Android-14, Android-13, Android-12.1, Android-12, Android-11 and Android-10.
-`Config-Releases/` contains the same set, with Android-16 updated within the last
-day at time of check. **There is no Android-17 directory in either.** The newest
-artefact is `NikGapps-gapps-arm64-16-20261031-unofficial.zip`.
+`omegas-super/projectnikgapps` is a fork of the NikGapps build tooling
+(`nikgapps/project`, GPL-3.0, Python). It builds the GApps packages rather than
+being the packages themselves. Two pieces of evidence in that fork show Android 17
+is a first-class target:
 
-**Uncertain, and important:** how an Android 16 GApps package is running on a
-LineageOS 24.0 (Android 17) device at all. Three explanations are possible and
-this document cannot distinguish them without the device:
+- `tests_registry/test_android17_config.py` asserts that
+  `NikGappsConfig("17")` produces a config at `Version=40`, and that four packages
+  removed in 17 (`Books`, `GoogleContactsSyncAdapter`,
+  `GoogleCalendarSyncAdapter`, `GoogleOneTimeInitializer`) are absent from 17 and
+  present in 16. That is an Android-17-aware config generator with a regression
+  test guarding it.
+- `nikgapps_registry/README.md` documents `--android-version 17` throughout, and
+  states the deploy workflow's manual dispatch defaults to `17`.
 
-1. The user is in fact on an Android 16-based LineageOS 23.2 build, not 24.0.
-2. An Android 17 build exists outside the public SourceForge tree (Elite or
-   private channel).
-3. It was force-installed across the API boundary and works by luck.
+So the device's GApps package can legitimately be an Android 17 build. The
+`getprop` check in step 0 below is still worth running, but it is now a
+confirmation rather than a suspicion.
 
-Verify with `adb shell getprop ro.build.version.release` and
-`adb shell getprop ro.lineage.version` before relying on any of this. If the
-device really is on Android 17 with an Android 16 GApps package, that combination
-is unsupported by NikGapps and is its own source of instability — do not debug a
-glass feature on top of it.
+**Uncertain:** whether the specific ZIP installed on the device was built from
+this fork. The fork's default branch is `main`, last pushed 2026-10-30, and the
+registry it publishes to is a GitLab generic package registry — not the public
+SourceForge tree, which still shows no Android-17 directory. Confirm with
+`adb shell getprop ro.build.version.release`.
 
 ### Which surfaces can carry the effect
 
