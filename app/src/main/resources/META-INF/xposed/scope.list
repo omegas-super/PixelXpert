@@ -3,3 +3,4 @@ com.google.android.apps.nexuslauncher
 system
 com.android.settings
 com.google.android.dialer
+com.android.server.telecom

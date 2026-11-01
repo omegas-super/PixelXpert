@@ -6,6 +6,7 @@
         <item>android</item>  <!-- System Framework -->
         <item>com.android.settings</item> <!-- settings app -->
         <item>com.google.android.dialer</item> <!-- google dialer -->
+        <item>com.android.server.telecom</item> <!-- telecom server -->
     </string-array>
 	<string-array name="root_requirement">
 		<item>com.android.systemui</item> <!-- systemUI -->
